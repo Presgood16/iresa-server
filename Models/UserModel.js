@@ -19,7 +19,7 @@ const userSchema = mongoose.Schema(
     tel: { 
       type: Number, 
       required: true, 
-      unique: true 
+      unique: true, 
     },
     password: {
       type: String,
