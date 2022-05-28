@@ -19,6 +19,7 @@ userRouter.post(
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        tel: user.tel,
         isAdmin: user.isAdmin,
         token: generateToken(user._id),
         createdAt: user.createdAt,
@@ -34,7 +35,7 @@ userRouter.post(
 userRouter.post(
   "/",
   asyncHandler(async (req, res) => {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, tel, password } = req.body;
 
     const userExists = await User.findOne({ email });
 
@@ -47,6 +48,7 @@ userRouter.post(
       firstName,
       lastName,
       email,
+      tel,
       password,
     });
 
@@ -56,6 +58,7 @@ userRouter.post(
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        tel: user.tel,
         isAdmin: user.isAdmin,
         token: generateToken(user._id),
       });
@@ -79,6 +82,7 @@ userRouter.get(
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        tel: user.tel,
         isAdmin: user.isAdmin,
         createdAt: user.createdAt,
       });
@@ -100,6 +104,7 @@ userRouter.put(
       user.firstName = req.body.firstName || user.firstName;
       user.lastName = req.body.lastName || user.lastName;
       user.email = req.body.email || user.email;
+      user.tel = req.body.tel || user.tel;
       if (req.body.password) {
         user.password = req.body.password;
       }
@@ -109,6 +114,7 @@ userRouter.put(
         firstName: updatedUser.firstName,
         lastName: updatedUser.lastName,
         email: updatedUser.email,
+        tel: updatedUser.tel,
         isAdmin: updatedUser.isAdmin,
         createdAt: updatedUser.createdAt,
         token: generateToken(updatedUser._id),
